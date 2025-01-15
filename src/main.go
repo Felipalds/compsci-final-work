@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
-	"math/big"
 	"time"
 
-	"github.com/Felipalds/compsci-final-work/src/brute"
+	"github.com/Felipalds/compsci-final-work/src/annealing"
+	"github.com/Felipalds/compsci-final-work/src/genetic"
+	"github.com/Felipalds/compsci-final-work/src/helpers"
+	"github.com/Felipalds/compsci-final-work/src/particle"
 )
 
 func main() {
@@ -20,19 +22,21 @@ func main() {
 	// define the test cases
 	// test and get statistics
 
-	data := "Hello, world"
+	matrix := helpers.ReadCsv("./data/formatted/berlin52.csv")
 
-	target := big.NewInt(1)
-	target.Lsh(target, 240) // This means 2^240, making it a relatively easy target
-
-	pow := brute.Block{Data: data, Target: target}
 	start := time.Now()
-
-	pow.Mine()
-
+	genetic.Execute(matrix, len(matrix))
 	duration := time.Since(start)
+	fmt.Println(duration)
 
-	fmt.Println("Completed mining")
-	fmt.Printf("Data: %s\nNonce: %d\nHash: %s\nTime Taken: %s\n", pow.Data, pow.Nonce, pow.Hash, duration)
+	start = time.Now()
+	particle.Execute(matrix, len(matrix))
+	duration = time.Since(start)
+	fmt.Println(duration)
 
+	start = time.Now()
+	annealing.Execute(matrix, len(matrix))
+	duration = time.Since(start)
+	fmt.Println(duration)
+	fmt.Println("Completed")
 }
