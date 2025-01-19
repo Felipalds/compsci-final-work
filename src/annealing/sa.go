@@ -56,6 +56,6 @@ func Execute(matrix [][]float64, numCities int) {
 
 	fmt.Println("Starting the Annealing . . .")
 	bestRoute, bestDistance := run(matrix, int(numCities))
-	fmt.Printf("Melhor rota: %v\n", bestRoute)
-	fmt.Printf("Distância total: %.2f\n", bestDistance)
+	fmt.Printf("Melhor rota SA: %v\n", bestRoute)
+	fmt.Printf("Distância total SA: %.2f\n", bestDistance)
 }

@@ -11,9 +11,9 @@ import (
 //
 
 const (
-	populationSize = 100
-	generations    = 500
-	mutationRate   = 0.1
+	populationSize = 200
+	generations    = 2000
+	mutationRate   = 0.5
 )
 
 func generateInitialPopulation(size, numCities int) [][]int {
@@ -101,6 +101,6 @@ func Execute(matrix [][]float64, numCities int) {
 
 	fmt.Println("Starting the Genetics . . .")
 	bestRoute, bestDistance := run(matrix, int(numCities))
-	fmt.Printf("Melhor rota: %v\n", bestRoute)
-	fmt.Printf("Distância total: %.2f\n", bestDistance)
+	fmt.Printf("Melhor rota genético: %v\n", bestRoute)
+	fmt.Printf("Distância total genético: %.2f\n", bestDistance)
 }

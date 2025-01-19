@@ -9,11 +9,11 @@ import (
 )
 
 const (
-	numParticles    = 50
-	maxIterations   = 1000
-	inertiaWeight   = 0.5
-	cognitiveFactor = 2.0
-	socialFactor    = 2.0
+	numParticles    = 200  // Lower number of particles to focus on refinement
+	maxIterations   = 8000 // Higher iteration count to allow more exploration
+	inertiaWeight   = 0.9  // Higher inertia weight for better exploration of the search space
+	cognitiveFactor = 1.5  // Slightly lower cognitive factor to prevent too much individual bias
+	socialFactor    = 4.0  // Increased social factor to encourage collaboration and sharing of solutions
 )
 
 func initializeParticles(numParticles, numCities int) ([][]int, [][]float64) {
@@ -86,6 +86,6 @@ func Execute(matrix [][]float64, numCities int) {
 	fmt.Println("Starting the Particle Swarm . . .")
 
 	globalBest, globalBestScore := run(matrix, int(numCities))
-	fmt.Printf("Melhor rota: %v\n", globalBest)
-	fmt.Printf("Distância total: %.2f\n", globalBestScore)
+	fmt.Printf("Melhor rota PSO: %v\n", globalBest)
+	fmt.Printf("Distância total PSO: %.2f\n", globalBestScore)
 }
